@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     async functionshaggypair() {
         const { state, saveCreds } = await useMultiFileAuthState(`./session`);
         try {
-            letshaggypairWeb = makeWASocket({
+            let shaggypairWeb = makeWASocket({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
                 browser: Browsers.macOS("Safari"),
             });
 
-            if (!DanuwaPairWeb.authState.creds.registered) {
+            if (!shaggypairWeb.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
                 const code = awaitshaggypairWeb.requestPairingCode(num);
